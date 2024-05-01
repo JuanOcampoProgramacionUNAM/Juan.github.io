@@ -1,7 +1,178 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Vidrieria OCAMPO</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+      .map-container {
+          text-align: center;
+          margin-top: 20px;
+      }
+
+      
+      .map-container iframe {
+          width: 100%;
+          height: 450px;
+          border: 0;
+      }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .button-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .button-container li {
+            margin-bottom: 10px;
+        }
+
+        .button-container button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .gallery img {
+            max-width: 60%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function toggleContent(buttonId) {
+            var content = document.getElementById("content");
+            var text = "";
+            var imageSrc = [];
+
+            switch (buttonId) {
+                case "btnContinuo":
+                    text = "<b><font color='blue'>1. Acerca de las ventanas:</font></b> Las ventanas son totalmente de aluminio, con un material estándar de 3 pulgadas y sujetas a cambios según lo solicitado por el cliente. Los precios están sujetos a cambios según sea el color del aluminio, el tipo de vidrio y el diseño solicitado. ";
+                    imageSrc = ["https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0014.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0026.jpg","https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0043.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0044.jpg"];
+                    break;
+                case "btnLigado":
+                    text = "<b><font color='blue'>2. Acerca de Puertas:</font></b> Las puertas tienen un material estándar, están sujetas a cambios de color, diseño y tipo de vidrio, pero de igual manera el costo está sujeto a cambios según las especificaciones solicitadas.";
+                    imageSrc = ["https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0048.jpg", " https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0046.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0037.jpg","https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0036.jpg", " https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0034.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0033.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0031.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0030.jpg","https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0027.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0025.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0024.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0020.jpg","https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0017.jpg"];
+                    break;
+                case "btnOperaciones":
+                    text = "<b><font color='blue'>3. Acerca de Canceles de baño: </font></b> Los canceles de baño normalmente solo son de aluminio a una altura maxima de 1.80 metros y con acrilico o conocido como mica, la cual puede cambiar de color y de diseños. De otra manera pueden ser de totalmente de vidrio templado. <br>";
+                    
+                    imageSrc = ["https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0018.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0023.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0022.jpg", "https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/IMG-20240111-WA0021.jpg"];
+                    break;
+              case "btnAcercaDeNosotros":
+                text = "<p><b><font color='blue'>3. Acerca de Nosotros: </font></b> </p>";
+                text += "<br>"; 
+                text += "<p><b><font color='blue'> Ubicación: </font></b> Nos ubicamos en el barrio Vidrieros en Chimalhuacán Estado de México, entre calle Yacatli y AV de las Torres.</p>";
+                text += "<br>"; 
+                text += "<p><b><font color='blue'> Codigo postal: </font></b> 56356.</p>";
+                text += "<br>"; 
+                text += "<p><b><font color='blue'> Número de telefono: </font></b> 55 72 69 77 28.</p>";
+
+                var locationURL = "https://maps.google.com/maps?q=ENGvbv6DXHrQbsrF8&output=embed";
+                
+                text += "<div class='map-container'>";
+                text += "<iframe width='600' height='450' style='border:0' loading='lazy' allowfullscreen src='" + locationURL + "'></iframe>";
+                text += "</div>";
+               
+                
+          
+                break;
+                
+                default:
+                    break;
+            }
+
+            var galleryHtml = "<p>" + text + "</p><div class='gallery'>";
+            for (var i = 0; i < imageSrc.length; i++) {
+                galleryHtml += "<img src='" + imageSrc[i] + "' alt='Imagen ilustrativa'>";
+            }
+            galleryHtml += "</div>";
+
+            content.innerHTML = galleryHtml;
+            content.classList.remove("hidden");
+        }
+    </script>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+    <div class="container">
+        <p><i><font size="3" style="white-space: pre-wrap; word-wrap: break-word;">> > > > > >    Vidrieria Ocampo  ---    Chimalhuacán EDO MEX  ---- 11/01/2024 < < < < < <</font></i></p> 
+        <h1> Vidrio y Aluminio OCAMPO </h1>
+
+          <div class="gallery">
+              <img src='https://raw.githubusercontent.com/JuanOcampoProgramacionUNAM/imagenes/main/Captura%20de%20pantalla%202024-01-14%20052047.png' alt='Imagen ilustrativa' style='max-width: 85%; margin-bottom: 10px; border-radius: 5px;'>
+          </div>
+
+
+        <p> Una vidriería y aluminiería especializada en soluciones personalizadas para ventanas, puertas y estructuras de aluminio, ofreciendo productos de alta calidad y servicio de instalación experto.</p>
+
+        <p><i><b><font color="red"> Los siguientes apartados muestran algunos de nuestros diseños y trabajos realizados.</font></b></i></p>
+
+        <div class="button-container">
+            <ul>
+                <li><button id="btnContinuo" onclick="toggleContent('btnContinuo')"> Ventanas </button></li>
+                <li><button id="btnLigado" onclick="toggleContent('btnLigado')"> Puertas </button></li>
+                <li><button id="btnOperaciones" onclick="toggleContent('btnOperaciones')"> Canceles de baño </button></li>
+
+              <li><button id="btnAcercaDeNosotros" onclick="toggleContent('btnAcercaDeNosotros')"> Acerca de Nosotros </button></li>
+
+            </ul>
+        </div>
+
+        <div id="content" class="hidden"></div>
+        <p><I><Font size=3 style="white-space: pre-wrap; word-wrap: break-word;">> > > > >      Ocampo - Quezada - Juan - Emmanuel - última - actuaización - Enero - 14 - 2024    < < < < <</Font></I></p>
+    </div>
+
 </body>
 </html>
